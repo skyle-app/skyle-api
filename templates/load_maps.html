@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Skyle API</title>
+	<!-- UIkit CSS -->
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/uikit@3.8.0/dist/css/uikit.min.css" />
+
+	<!-- UIkit JS -->
+	<script src="https://cdn.jsdelivr.net/npm/uikit@3.8.0/dist/js/uikit.min.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/uikit@3.8.0/dist/js/uikit-icons.min.js"></script>
+
+	<!-- Maps API -->
+	<script type="text/javascript" src="https://openapi.map.naver.com/openapi/v3/maps.js?ncpClientId=9q276yus9n"></script>
+</head>
+<body>
+<div style="margin: 0; padding: 0;">
+	<div id="map" style="width: 100vw; height: 100vh;"></div>
+
+	<script>
+        var map = new naver.maps.Map('map', {
+            center: new naver.maps.LatLng(37.3674001, 127.1181196),
+            zoom: 15
+        });
+        var polyline = new naver.maps.Polyline({  
+            map: map,
+            path: [  
+                {% for x in range(1, len(rows)) %}
+                    new naver.maps.LatLng({{ rows[x]['latitude'] }}, {{ rows[x]['longitude'] }}),
+                {% endfor %}
+            ]
+        });
+	</script>
+</div>
+</body>
+</html>
