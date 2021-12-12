@@ -95,7 +95,7 @@ def v1_signin():
 			try:
 				conn = pymysql.connect(host='localhost', user='root', password='1234', db='skyle', charset='utf8') 
 				cursor = conn.cursor(pymysql.cursors.DictCursor) 
-				sql = "SELECT * from Users WHERE id=%s;"
+				sql = "SELECT * from users WHERE id=%s;"
 
 				cursor.execute(sql, request.form['id'])
 
@@ -141,7 +141,7 @@ def v1_child_signin():
 						id = rows.get('parent')
 						conn = pymysql.connect(host='localhost', user='root', password='1234', db='skyle', charset='utf8') 
 						cursor = conn.cursor(pymysql.cursors.DictCursor) 
-						sql = "SELECT * from Users WHERE id=%s;"
+						sql = "SELECT * from users WHERE id=%s;"
 
 						cursor.execute(sql, id)
 
@@ -174,7 +174,7 @@ def get_boho():
 			try:
 				conn = pymysql.connect(host='localhost', user='root', password='1234', db='skyle', charset='utf8') 
 				cursor = conn.cursor(pymysql.cursors.DictCursor) 
-				sql = "SELECT id, email, birth, name, phone from Users WHERE id=%s;"
+				sql = "SELECT id, email, birth, name, phone from users WHERE id=%s;"
 
 				cursor.execute(sql, decode_token(request.form['token']).get('id'))
 
@@ -315,7 +315,7 @@ def v1_add_user():
 		try:
 			conn = pymysql.connect(host='localhost', user='root', password='1234', db='skyle', charset='utf8') 
 			cursor = conn.cursor(pymysql.cursors.DictCursor) 
-			sql = "SELECT * from Users WHERE id=%s;" 
+			sql = "SELECT * from users WHERE id=%s;" 
 
 			cursor.execute(sql, decode_token(request.form['token']).get('id'))
 
@@ -357,7 +357,7 @@ def v1_signup():
 		try:
 			conn = pymysql.connect(host='localhost', user='root', password='1234', db='skyle', charset='utf8') 
 			cursor = conn.cursor() 
-			sql = "INSERT INTO Users (id, name, birth, email, phone, password) VALUES (%s, %s, %s, %s, %s, %s)"
+			sql = "INSERT INTO users (id, name, birth, email, phone, password) VALUES (%s, %s, %s, %s, %s, %s)"
 
 			cursor.execute(sql,(request.form['id'], request.form['name'], request.form['birth'], request.form['email'], request.form['phone'], generate_password_hash(request.form['password']))) 
 
@@ -382,7 +382,7 @@ def v1_edit_boho():
 		try:
 			conn = pymysql.connect(host='localhost', user='root', password='1234', db='skyle', charset='utf8') 
 			cursor = conn.cursor() 
-			sql = "UPDATE Users SET name=%s, email=%s, phone=%s, password=%s WHERE id=%s;"
+			sql = "UPDATE users SET name=%s, email=%s, phone=%s, password=%s WHERE id=%s;"
 
 			cursor.execute(sql,(request.form['name'], request.form['email'], request.form['phone'], generate_password_hash(request.form['password']), decode_token(request.form['token']).get('id'))) 
 
