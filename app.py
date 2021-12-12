@@ -93,7 +93,7 @@ def v1_signin():
 	if not request.form['id'] == None or request.form['password'] == None:
 		if not request.form['id'] == "" or request.form['password'] == "":
 			try:
-				conn = pymysql.connect(host='192.168.0.6', user='root', password='1234', db='skyle', charset='utf8') 
+				conn = pymysql.connect(host='127.0.0.1', user='root', password='1234', db='skyle', charset='utf8') 
 				cursor = conn.cursor(pymysql.cursors.DictCursor) 
 				sql = "SELECT * from Users WHERE id=%s;"
 
@@ -128,7 +128,7 @@ def v1_child_signin():
 	if not request.form['id'] == None or request.form['password'] == None:
 		if not request.form['id'] == "" or request.form['password'] == "":
 			try:
-				conn = pymysql.connect(host='192.168.0.6', user='root', password='1234', db='skyle', charset='utf8') 
+				conn = pymysql.connect(host='127.0.0.1', user='root', password='1234', db='skyle', charset='utf8') 
 				cursor = conn.cursor(pymysql.cursors.DictCursor) 
 				sql = "SELECT * from Child WHERE id=%s;"
 
@@ -139,7 +139,7 @@ def v1_child_signin():
 				if rows != ():
 					for rows in rows:
 						id = rows.get('parent')
-						conn = pymysql.connect(host='192.168.0.6', user='root', password='1234', db='skyle', charset='utf8') 
+						conn = pymysql.connect(host='127.0.0.1', user='root', password='1234', db='skyle', charset='utf8') 
 						cursor = conn.cursor(pymysql.cursors.DictCursor) 
 						sql = "SELECT * from Users WHERE id=%s;"
 
@@ -172,7 +172,7 @@ def get_boho():
 	if request.form['token'] != None or request.form['token'] != "":
 		if (validate_token(request.form['token'])):
 			try:
-				conn = pymysql.connect(host='192.168.0.6', user='root', password='1234', db='skyle', charset='utf8') 
+				conn = pymysql.connect(host='127.0.0.1', user='root', password='1234', db='skyle', charset='utf8') 
 				cursor = conn.cursor(pymysql.cursors.DictCursor) 
 				sql = "SELECT id, email, birth, name, phone from Users WHERE id=%s;"
 
@@ -204,7 +204,7 @@ def v1_get_child():
 	if request.form['token'] != None or request.form['token'] != "":
 		if (validate_token(request.form['token'])):
 			try:
-				conn = pymysql.connect(host='192.168.0.6', user='root', password='1234', db='skyle', charset='utf8') 
+				conn = pymysql.connect(host='127.0.0.1', user='root', password='1234', db='skyle', charset='utf8') 
 				cursor = conn.cursor(pymysql.cursors.DictCursor) 
 				sql = "SELECT * from Child WHERE parent=%s;"
 
@@ -232,7 +232,7 @@ def v1_get_child():
 # ‘/v1/load_maps URL is bound with v1_load_maps() function.
 def v1_load_maps():
 	try:
-		conn = pymysql.connect(host='192.168.0.6', user='root', password='1234', db='skyle', charset='utf8') 
+		conn = pymysql.connect(host='127.0.0.1', user='root', password='1234', db='skyle', charset='utf8') 
 		cursor = conn.cursor(pymysql.cursors.DictCursor) 
 		sql = "SELECT * from Child WHERE id=%s;" 
 
@@ -273,7 +273,7 @@ def v1_load_maps():
 @app.route('/api/v1/add_maps', methods=["POST"])
 def v1_add_maps():
 		try:
-			conn = pymysql.connect(host='192.168.0.6', user='root', password='1234', db='skyle', charset='utf8') 
+			conn = pymysql.connect(host='127.0.0.1', user='root', password='1234', db='skyle', charset='utf8') 
 			cursor = conn.cursor(pymysql.cursors.DictCursor) 
 			sql = "SELECT * from Child WHERE id=%s;" 
 
@@ -313,7 +313,7 @@ def v1_add_maps():
 @app.route('/api/v1/add_user', methods=["POST"])
 def v1_add_user():
 		try:
-			conn = pymysql.connect(host='192.168.0.6', user='root', password='1234', db='skyle', charset='utf8') 
+			conn = pymysql.connect(host='127.0.0.1', user='root', password='1234', db='skyle', charset='utf8') 
 			cursor = conn.cursor(pymysql.cursors.DictCursor) 
 			sql = "SELECT * from Users WHERE id=%s;" 
 
@@ -355,7 +355,7 @@ def v1_add_user():
 @app.route('/api/v1/signup', methods=["POST"])
 def v1_signup():
 		try:
-			conn = pymysql.connect(host='192.168.0.6', user='root', password='1234', db='skyle', charset='utf8') 
+			conn = pymysql.connect(host='127.0.0.1', user='root', password='1234', db='skyle', charset='utf8') 
 			cursor = conn.cursor() 
 			sql = "INSERT INTO Users (id, name, birth, email, phone, password) VALUES (%s, %s, %s, %s, %s, %s)"
 
@@ -380,7 +380,7 @@ def v1_signup():
 @app.route('/api/v1/edit_boho', methods=["POST"])
 def v1_edit_boho():
 		try:
-			conn = pymysql.connect(host='192.168.0.6', user='root', password='1234', db='skyle', charset='utf8') 
+			conn = pymysql.connect(host='127.0.0.1', user='root', password='1234', db='skyle', charset='utf8') 
 			cursor = conn.cursor() 
 			sql = "UPDATE Users SET name=%s, email=%s, phone=%s, password=%s WHERE id=%s;"
 
